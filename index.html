@@ -375,20 +375,21 @@
             name: "A Firma Barbearia",
             // Precisa ser igual ao valor de duration.value(1, 'h') no firestore.rules.
             minCancelMinutes: 60,
-            // Horários oferecidos (formato HH:MM).
-            slots: ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+            // Horários oferecidos (formato HH:MM): segunda a sábado, das 09h às 20h.
+            slots: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
             // Dias fechados: 0 = domingo, 1 = segunda ... 6 = sábado. Ex.: [0] fecha aos domingos.
-            closedWeekdays: [],
+            closedWeekdays: [0],
             // whatsapp: só números, com 55 + DDD + número.
             barbers: [
-                { id: "firma", name: "A Firma", whatsapp: "559180845852" }
+                { id: "angelo", name: "Ângelo Mafra", whatsapp: "559180845852" }
             ],
             // Preços iniciais. Depois o gerente altera pelo painel (fica salvo no banco).
             services: [
-                { id: "corte", name: "Corte de Cabelo", price: 40 },
-                { id: "barba", name: "Barba Completa", price: 30 },
-                { id: "combo", name: "Corte + Barba (Combo)", price: 65 },
-                { id: "pezinho", name: "Pézinho / Acabamento", price: 20 }
+                { id: "degrade", name: "Degradê", price: 50 },
+                { id: "social", name: "Social (até o pente 1)", price: 35 },
+                { id: "sobrancelha", name: "Sobrancelha", price: 10 },
+                { id: "barba", name: "Barba", price: 35 },
+                { id: "bigode", name: "Bigode", price: 10 }
             ]
         };
         // ============================================================
