@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pellizza's Barber Shop</title>
+    <title>A Firma Barbearia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
                 extend: {
                     fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
-                        gold: { 400: '#D4AF37', 500: '#C5A028', 600: '#A38118' },
+                        gold: { 400: '#22D3EE', 500: '#06B6D4', 600: '#0891B2' },
                         dark: { 800: '#121212', 900: '#0A0A0A', 950: '#050505' }
                     }
                 }
@@ -30,8 +30,8 @@
                     <i class="fa-solid fa-scissors"></i>
                 </div>
                 <div>
-                    <h1 id="shop-title" class="font-bold text-lg tracking-wider text-white">PELLIZZA'S</h1>
-                    <p class="text-xs text-gold-400 uppercase tracking-widest">Barber Shop</p>
+                    <h1 id="shop-title" class="font-bold text-lg tracking-wider text-white">A FIRMA</h1>
+                    <p class="text-xs text-gold-400 uppercase tracking-widest">Barbearia</p>
                 </div>
             </div>
             <button id="btn-open-manager" type="button" class="text-xs bg-dark-800 hover:bg-gray-800 text-gold-400 border border-gray-700 px-3 py-2 rounded-xl transition flex items-center space-x-2 cursor-pointer">
@@ -108,7 +108,7 @@
                     </div>
 
                     <label class="flex items-start space-x-3 text-xs text-gray-400 cursor-pointer">
-                        <input type="checkbox" id="client-consent" class="mt-0.5 accent-yellow-500">
+                        <input type="checkbox" id="client-consent" class="mt-0.5 accent-cyan-500">
                         <span>Concordo que a barbearia guarde meu nome e telefone apenas para gerenciar meu agendamento e entrar em contato sobre ele (LGPD).</span>
                     </label>
 
@@ -243,7 +243,7 @@
             var VERSION = "1.1.0";
             // Número que recebe os relatórios (55 + DDD + número).
             var SUPPORT_WHATSAPP = "5511978989942";
-            var SHOP_LABEL = "Pellizza's Barber Shop";
+            var SHOP_LABEL = "A Firma Barbearia";
             var buf = [];
             var state = { moduleOk: false, configured: null, loggedIn: false };
             var currentProtocol = "";
@@ -360,32 +360,28 @@
         // ============================================================
         // CONFIGURAÇÃO — é aqui que você personaliza para cada barbearia
         // ============================================================
-        // 1) Cole os dados do seu projeto Firebase (Configurações do projeto > Seus apps > App da Web).
-        //    Essa chave pode ficar pública; quem protege os dados são as regras do firestore.rules.
         const firebaseConfig = {
-            apiKey: "AIzaSyCMvUZswb0poartrAaeMjAiSW1jfeat7e8",
-            authDomain: "faca-preta.firebaseapp.com",
-            projectId: "faca-preta",
-            storageBucket: "faca-preta.firebasestorage.app",
-            messagingSenderId: "187515732841",
-            appId: "1:187515732841:web:2af42015b4b11307ee33f8",
-            measurementId: "G-4KCWTGCYLQ"
+            apiKey: "AIzaSyCD2Ep4XK9DW--iEgxncU31Q9b7FfHNn6o",
+            authDomain: "a-firma-fddb9.firebaseapp.com",
+            projectId: "a-firma-fddb9",
+            storageBucket: "a-firma-fddb9.firebasestorage.app",
+            messagingSenderId: "462518428984",
+            appId: "1:462518428984:web:353eeb059805da58b3cdcd",
+            measurementId: "G-NY3CVCGQ0N"
         };
 
         // 2) Dados da barbearia.
         const SHOP = {
-            name: "Pellizza's Barber Shop",
+            name: "A Firma Barbearia",
             // Precisa ser igual ao valor de duration.value(1, 'h') no firestore.rules.
             minCancelMinutes: 60,
-            // Horários oferecidos (formato HH:MM). Tirei as 12:00, como no original.
+            // Horários oferecidos (formato HH:MM).
             slots: ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
             // Dias fechados: 0 = domingo, 1 = segunda ... 6 = sábado. Ex.: [0] fecha aos domingos.
             closedWeekdays: [],
-            // whatsapp: só números, com 55 + DDD + número. TROQUE pelos números reais.
+            // whatsapp: só números, com 55 + DDD + número.
             barbers: [
-                { id: "jo", name: "Jô", whatsapp: "5511978989942" },
-                { id: "claudinho", name: "Claudinho", whatsapp: "5511978989942" },
-                { id: "bochecha", name: "Bochecha", whatsapp: "5511978989942" }
+                { id: "firma", name: "A Firma", whatsapp: "559180845852" }
             ],
             // Preços iniciais. Depois o gerente altera pelo painel (fica salvo no banco).
             services: [
@@ -449,7 +445,7 @@
             toastTimer = setTimeout(() => t.classList.add("hidden"), 5000);
         }
 
-        const LS_KEY = "pellizzas_my_tokens";
+        const LS_KEY = "afirma_my_tokens";
         const getMyTokens = () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch { return []; } };
         const setMyTokens = (arr) => { try { localStorage.setItem(LS_KEY, JSON.stringify([...new Set(arr)])); } catch { /* sem armazenamento */ } };
         const addMyToken = (t) => setMyTokens([...getMyTokens(), t]);
@@ -794,7 +790,7 @@
 
         // ---------- inicialização ----------
         function init() {
-            $("shop-title").textContent = SHOP.name.split(" ")[0].toUpperCase();
+            $("shop-title").textContent = "A FIRMA";
             if (!configured) {
                 $("config-warning").classList.remove("hidden");
                 $("btn-submit-booking").disabled = true;
